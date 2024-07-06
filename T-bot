@@ -1,0 +1,29 @@
+import logging
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, CallbackContext
+
+# Настройка логирования
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+
+# Обработчик команды /start
+def start(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text('Привет, мир!')
+
+def main() -> None:
+    # Заменить 'YOUR_TOKEN' на полученный токен от BotFather
+    updater = Updater("YOUR_TOKEN")
+    dispatcher = updater.dispatcher
+
+    # Добавляем обработчик команды /start
+    dispatcher.add_handler(CommandHandler("start", start))
+
+    # Запуск бота
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
+
+# Не забудь установить библиотеку python-telegram-bot с помощью pip:
+
+# pip install python-telegram-bot
